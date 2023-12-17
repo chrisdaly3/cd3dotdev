@@ -32,6 +32,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"svelte-moveable": "^0.45.0",
 		"svelte-typewriter": "^3.2.2"
 	}
 }
