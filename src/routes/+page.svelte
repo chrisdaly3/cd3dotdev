@@ -2,6 +2,6 @@
 	import Term from '$lib/terminal.svelte';
 </script>
 
-<div class="flex h-screen flex-col items-center justify-center bg-neutral-900">
+<div class="flex h-screen flex-col items-center justify-center bg-base">
 	<Term />
 </div>
