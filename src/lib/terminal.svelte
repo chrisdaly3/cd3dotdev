@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { isVisible } from '$lib/stores/hide.js';
 	import { blur } from 'svelte/transition';
+	import TerminalInput from './terminalInput.svelte';
 
 	function handleClose() {
 		isVisible.set(false);
@@ -17,9 +18,10 @@
 			<div class="mx-1.5 my-4 w-3 h-3 rounded-full bg-minimize"></div>
 			<div class="mx-1.5 my-4 w-3 h-3 rounded-full bg-expand"></div>
 		</div>
-		<div class="h-full bg-overlay flex flex-col rounded-b-xl">
-			<p class="text-xl text-left mx-5 text-text">Hello.</p>
-			<p class="text-xl text-left my-3 mx-5 text-text">My name is Chris, and I'm a software developer.</p>
+		<div class="h-full bg-overlay flex flex-col rounded-b-xl opacity-60 shadow-xl">
+			<section class="h-full bg-transparent flex flex-col rounded-b-xl z-10 text-text font-bold overflow-y-auto px-6">
+				<TerminalInput />
+			</section>	
 		</div>
 	</div>
 {/if}

@@ -25,6 +25,15 @@ export default {
     		foam: '#9ccfd8',
     		iris: '#c4a7e7',
     		highlight_high: '#524f67',
+			},
+			keyframes: {
+				blink: {
+					'0%, 100%': { opacity: '1'},
+					'50%': { opacity: '0'},
+				},
+			},
+			animation: {
+				'blink': 'blink 1.25s linear infinite'
 			}
 		}
 	},
