@@ -20,6 +20,7 @@
 		</div>
 		<div class="h-full bg-overlay flex flex-col rounded-b-xl opacity-60 shadow-xl">
 			<section class="h-full bg-transparent flex flex-col rounded-b-xl z-10 text-text font-bold overflow-y-auto px-6">
+				
 				<TerminalInput />
 			</section>	
 		</div>
