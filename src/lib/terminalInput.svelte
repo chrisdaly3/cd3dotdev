@@ -11,11 +11,12 @@
 		if (event.key === 'Enter') {
 			event.preventDefault();
 			insertNewSpan();
+			terminalInput.parentElement?.scrollTo(0,terminalInput.parentElement.scrollTop);
 		}
 	}
 
 	function insertNewSpan() {
-		const newSpan = document.createElement('span');
+		const newSpan: HTMLSpanElement = document.createElement('span');
 		newSpan.contentEditable = 'true';
 		newSpan.className =
 			"outline-none caret-transparent before:content-['visitor_@_~/cd3/dev:_'] before:text-foam after:content-['.'] after:bg-text after:animate-blink";
