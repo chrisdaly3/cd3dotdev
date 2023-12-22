@@ -1,8 +1,28 @@
-import { user, author } from '$lib/stores/localStorage';
+import { user } from '$lib/stores/localStorage';
 
 interface CommandInfo {
-  execute: (arg0: string) => string;
+  execute: (arg0: string) => any;
   description: string;
+}
+
+export type HTMLResponse = {
+  name: string;
+  element: string;
+}
+
+const authorInfo:HTMLResponse = {
+  name: 'AuthorInfo',
+  element: `<p>
+-----------------------------
+Name: Chris Daly
+Years of Experience: 4
+Focus: Backend and DevOps
+Languages: Golang, Python, Bash, Ruby, Javascript/Typescript 
+Frameworks: Django, Svelte/Sveltekit, Fiber, Express
+Terminal: cd3Term.sh
+CD3.Dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
+-----------------------------</p>
+`
 }
 
 function storeUser(command: string): string {
@@ -22,8 +42,8 @@ function showHelp(): string {
   return `Welcome to the cd3.dev web terminal. Commands include:\n` + options.map((c) => `** ${c}: ${commandChoices[c].description}`).join(`\n`);
 }
 
-function showAuthorDetails(): string {
-  return `needs to be implemented still. please be patient :^) - ${author}`
+function showAuthorDetails(): HTMLResponse {
+  return authorInfo
 }
 const commandChoices: { [key: string]: CommandInfo} = {
   user: {execute: storeUser, description: "set the terminal user value. --help for use"},
@@ -43,3 +63,4 @@ export function handle(command: string) {
     return `The ${c} command does not exist`;
   }
 }
+

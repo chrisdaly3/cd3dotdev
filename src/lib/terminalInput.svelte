@@ -3,10 +3,11 @@
 	import { user } from '$lib/stores/localStorage';
 	import { handle } from '$lib/commands';
 	import { window } from './terminal.svelte';
+	import type { HTMLResponse } from '$lib/commands';
 
 	interface LineData {
 		command: string;
-		response: string;
+		response: string | HTMLResponse;
 	}
 
 	let terminalInput: HTMLSpanElement;
@@ -42,7 +43,11 @@
 		<span class="outline-none caret-transparent text-foam">{$user} @ ~/cd3/dev: </span><span
 			class="outline-none pl-1">{line.command}</span
 		>
-		<p class="pt-1 pb-4">{line.response}</p>
+		{#if typeof line.response === 'string'}
+			<p class="pt-1 pb-4">{line.response}</p>
+		{:else}
+			{@html line.response.element}
+		{/if}
 	{/each}
 </span>
 
