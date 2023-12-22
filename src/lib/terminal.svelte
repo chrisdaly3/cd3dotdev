@@ -1,24 +1,15 @@
-<script lang="ts">
-	import { beforeUpdate, afterUpdate } from 'svelte';
+<script lang="ts" context="module">
 	import { isVisible } from '$lib/stores/hide';
 	import { blur, slide } from 'svelte/transition';
 	import TerminalInput from './terminalInput.svelte';
 	import { OnMount } from 'fractils';
 
-	// TODO: Fix scrolling it doesn't work right now
-	let element: HTMLElement;
-
-	const scrollToBottom = async (node:HTMLElement) => {
-    node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
-  }; 
-
-afterUpdate(() => {
-		scrollToBottom(element)
-	})
+	export let window: HTMLElement;
 
 	function handleClose() {
 		isVisible.set(false);
 	}
+
 </script>
 
 {#if $isVisible}
@@ -31,9 +22,10 @@ afterUpdate(() => {
 			<div class="mx-1.5 my-4 w-3 h-3 rounded-full bg-minimize"></div>
 			<div class="mx-1.5 my-4 w-3 h-3 rounded-full bg-expand"></div>
 		</div>
-		<div class="h-full bg-overlay flex flex-col rounded-b-xl opacity-60 shadow-xl">
+		<div class="h-full bg-overlay flex flex-col rounded-b-xl opacity-60 shadow-xl pb-1">
 			<section
-				class="bg-transparent rounded-b-xl text-text font-bold overflow-y-auto px-6 break-normal" bind:this={element}
+				class="bg-transparent rounded-b-xl text-text overflow-y-auto px-6 break-normal"
+				bind:this={window}
 			>
 				<OnMount>
 					<pre
@@ -48,7 +40,7 @@ afterUpdate(() => {
 					</pre>
 				</OnMount>
 				<section>Hello and welcome. Type help to get started.</section>
-			<TerminalInput />
+				<TerminalInput />
 			</section>
 		</div>
 	</div>

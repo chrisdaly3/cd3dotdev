@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate} from 'svelte';
 	import { user } from '$lib/stores/localStorage';
 	import { handle } from '$lib/commands';
+	import { window } from './terminal.svelte';
 
 	interface LineData {
 		command: string;
@@ -17,6 +18,14 @@
 		terminalInput.focus();
 	});
 
+	afterUpdate(() => {
+		scrollToBottom(window);
+	})
+
+	const scrollToBottom = (node: HTMLElement) => {
+		node.scroll({top: node.scrollHeight, behavior: 'smooth'});
+	};
+
 	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			event.preventDefault();
@@ -28,7 +37,7 @@
 	}
 </script>
 
-<span class="text-text font-bold overflow-y-auto px-6 whitespace-pre-wrap pl-0">
+<span class="text-text overflow-y-auto px-6 whitespace-pre-wrap pl-0">
 	{#each terminalLines as line, i (i)}
 		<span class="outline-none caret-transparent text-foam">{$user} @ ~/cd3/dev: </span><span
 			class="outline-none pl-1">{line.command}</span
@@ -38,12 +47,7 @@
 </span>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div
-	class="text-text font-bold overflow-y-auto"
-	on:click={terminalInput.focus()}
-	role="textbox"
-	tabindex="0"
->
+<div class="text-text overflow-y-auto" on:click={terminalInput.focus()} role="textbox" tabindex="0">
 	<span class="outline-none caret-transparent text-foam">{$user} @ ~/cd3/dev: </span><span
 		bind:this={terminalInput}
 		contenteditable="true"
