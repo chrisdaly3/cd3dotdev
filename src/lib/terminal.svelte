@@ -1,8 +1,20 @@
 <script lang="ts">
-	import { isVisible } from '$lib/stores/hide.js';
+	import { beforeUpdate, afterUpdate } from 'svelte';
+	import { isVisible } from '$lib/stores/hide';
 	import { blur, slide } from 'svelte/transition';
 	import TerminalInput from './terminalInput.svelte';
 	import { OnMount } from 'fractils';
+
+	// TODO: Fix scrolling it doesn't work right now
+	let element: HTMLElement;
+
+	const scrollToBottom = async (node:HTMLElement) => {
+    node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
+  }; 
+
+afterUpdate(() => {
+		scrollToBottom(element)
+	})
 
 	function handleClose() {
 		isVisible.set(false);
@@ -21,7 +33,7 @@
 		</div>
 		<div class="h-full bg-overlay flex flex-col rounded-b-xl opacity-60 shadow-xl">
 			<section
-				class="h-full bg-transparent flex flex-col rounded-b-xl z-10 text-text font-bold overflow-y-auto px-6"
+				class="bg-transparent rounded-b-xl text-text font-bold overflow-y-auto px-6 break-normal" bind:this={element}
 			>
 				<OnMount>
 					<pre
@@ -35,8 +47,8 @@
  ╚═════╝╚═════╝ ╚═════╝ ╚═╝╚═════╝ ╚══════╝  ╚═══╝  
 					</pre>
 				</OnMount>
-				<section>Hello and welcome. Type --help to get started.</section>
-				<TerminalInput />
+				<section>Hello and welcome. Type help to get started.</section>
+			<TerminalInput />
 			</section>
 		</div>
 	</div>
