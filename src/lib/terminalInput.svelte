@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, afterUpdate} from 'svelte';
-	import { user } from '$lib/stores/localStorage';
+	import { user, history } from '$lib/stores/localStorage';
 	import { handle } from '$lib/commands';
 	import { window } from './terminal.svelte';
 	import type { HTMLResponse } from '$lib/commands';
@@ -13,7 +13,10 @@
 	let terminalInput: HTMLSpanElement;
 	let command: string;
 	let terminalLines: LineData[] = [];
+	let historyList: string[] = [];
 	let username;
+
+	$: username = user;
 
 	onMount(() => {
 		terminalInput.focus();
@@ -27,14 +30,17 @@
 		node.scroll({top: node.scrollHeight, behavior: 'smooth'});
 	};
 
+	// Set the user's prior history of commands for arrow handling, and perform action of command
 	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			event.preventDefault();
+			historyList.push(command)
+			history.set(historyList)
+
 			let response = handle(command);
 			terminalLines[terminalLines.length] = { command, response };
 			command = '';
 		}
-		username = user;
 	}
 </script>
 
@@ -44,7 +50,7 @@
 			class="outline-none pl-1">{line.command}</span
 		>
 		{#if typeof line.response === 'string'}
-			<p class="pt-1 pb-4">{line.response}</p>
+			<p class="pt-2 pb-4 font-bold">{line.response}</p>
 		{:else}
 			{@html line.response.element}
 		{/if}

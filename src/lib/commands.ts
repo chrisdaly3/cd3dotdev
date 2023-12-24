@@ -6,22 +6,21 @@ interface CommandInfo {
 }
 
 export type HTMLResponse = {
-  name: string;
   element: string;
 }
 
 const authorInfo:HTMLResponse = {
-  name: 'AuthorInfo',
-  element: `<p>
+  element: `<p class=font-bold>
 -----------------------------
 Name: Chris Daly
-Years of Experience: 4
+Years of Experience: 3.5
 Focus: Backend and DevOps
 Languages: Golang, Python, Bash, Ruby, Javascript/Typescript 
 Frameworks: Django, Svelte/Sveltekit, Fiber, Express
 Terminal: cd3Term.sh
 CD3.Dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
------------------------------</p>
+-----------------------------
+</p>
 `
 }
 
@@ -45,9 +44,19 @@ function showHelp(): string {
 function showAuthorDetails(): HTMLResponse {
   return authorInfo
 }
+
+function callURL(command: string) {
+  if (command === '' || /^[]+$/.test(command) || command === '--help') {
+    return `usage: curl <url>\n\n<url.tld>: redirects the page to the requested url`
+  } else {
+    window.location.href = `https://${command}`
+  }
+}
+
 const commandChoices: { [key: string]: CommandInfo} = {
-  user: {execute: storeUser, description: "set the terminal user value. --help for use"},
   help:{ execute: showHelp, description: "return a list of helpful commands"},
+  user: {execute: storeUser, description: "set the terminal user value. --help for use"},
+  curl:{execute: callURL, description: "Change to a new site. --help for use."},
   neofetch:{execute: showAuthorDetails, description: "display information about the creator of this site."},
   //TODO: Add additional command options
 }
