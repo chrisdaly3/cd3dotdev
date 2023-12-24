@@ -70,8 +70,8 @@ const commandChoices: { [key: string]: CommandInfo } = {
   help: { execute: showHelp, description: "return a list of helpful commands" },
   user: { execute: storeUser, description: "set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
-  msg: { execute: showContactDetails, description: "Display contact information for the author" },
-  neofetch: { execute: showAuthorDetails, description: "display information about the creator of this site." },
+  msg: { execute: showContactDetails, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
+  neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
   //TODO: Add additional command options
 }
 
