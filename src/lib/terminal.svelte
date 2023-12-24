@@ -9,7 +9,6 @@
 	function handleClose() {
 		isVisible.set(false);
 	}
-
 </script>
 
 {#if $isVisible}

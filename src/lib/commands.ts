@@ -9,7 +9,7 @@ export type HTMLResponse = {
   element: string;
 }
 
-const authorInfo:HTMLResponse = {
+const authorInfo: HTMLResponse = {
   element: `<p class=font-bold>
 -----------------------------
 Name: Chris Daly
@@ -20,6 +20,15 @@ Frameworks: Django, Svelte/Sveltekit, Fiber, Express
 Terminal: cd3Term.sh
 CD3.Dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
 -----------------------------
+</p>
+`
+}
+
+// TODO: implement contact details for response.
+const contactDetails: HTMLResponse = {
+  element: `
+<p class=italic>
+msg is still a work in progress, it will be implemented soon :^)
 </p>
 `
 }
@@ -53,11 +62,16 @@ function callURL(command: string) {
   }
 }
 
-const commandChoices: { [key: string]: CommandInfo} = {
-  help:{ execute: showHelp, description: "return a list of helpful commands"},
-  user: {execute: storeUser, description: "set the terminal user value. --help for use"},
-  curl:{execute: callURL, description: "Change to a new site. --help for use."},
-  neofetch:{execute: showAuthorDetails, description: "display information about the creator of this site."},
+function showContactDetails(): HTMLResponse {
+  return contactDetails
+}
+
+const commandChoices: { [key: string]: CommandInfo } = {
+  help: { execute: showHelp, description: "return a list of helpful commands" },
+  user: { execute: storeUser, description: "set the terminal user value. --help for use" },
+  curl: { execute: callURL, description: "Change to a new site. --help for use." },
+  msg: { execute: showContactDetails, description: "Display contact information for the author" },
+  neofetch: { execute: showAuthorDetails, description: "display information about the creator of this site." },
   //TODO: Add additional command options
 }
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, afterUpdate} from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 	import { user, history } from '$lib/stores/localStorage';
 	import { handle } from '$lib/commands';
 	import { window } from './terminal.svelte';
@@ -13,7 +13,7 @@
 	let terminalInput: HTMLSpanElement;
 	let command: string;
 	let terminalLines: LineData[] = [];
-	let historyList: string[] = [];
+	let historyIndex: number = $history.length;
 	let username;
 
 	$: username = user;
@@ -24,22 +24,33 @@
 
 	afterUpdate(() => {
 		scrollToBottom(window);
-	})
+	});
 
 	const scrollToBottom = (node: HTMLElement) => {
-		node.scroll({top: node.scrollHeight, behavior: 'smooth'});
+		node.scroll({ top: node.scrollHeight, behavior: 'smooth' });
 	};
 
 	// Set the user's prior history of commands for arrow handling, and perform action of command
 	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			event.preventDefault();
-			historyList.push(command)
-			history.set(historyList)
+			$history.push(command);
+			history.set($history);
+			historyIndex = $history.length;
 
 			let response = handle(command);
 			terminalLines[terminalLines.length] = { command, response };
 			command = '';
+		} else if (event.key === 'ArrowUp') {
+			event.preventDefault();
+			historyIndex = Math.max(0, historyIndex - 1);
+			console.log(historyIndex);
+			command = $history[historyIndex];
+		} else if (event.key === 'ArrowDown') {
+			event.preventDefault();
+			historyIndex = Math.min($history.length, historyIndex + 1);
+			console.log(historyIndex);
+			command = $history[historyIndex];
 		}
 	}
 </script>
