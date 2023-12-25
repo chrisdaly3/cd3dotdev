@@ -17,14 +17,13 @@ Years of Experience: 3.5
 Focus: Backend and DevOps
 Languages: Golang, Python, Bash, Ruby, Javascript/Typescript 
 Frameworks: Django, Svelte/Sveltekit, Fiber, Express
-Terminal: cd3Term.sh
-CD3.Dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
+CD3.dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
 -----------------------------
 </p>
 `
 }
 
-// TODO: implement contact details for response.
+// TODO: Set Up Email Template for msg
 const contactDetails: HTMLResponse = {
   element: `
 <p class=italic>
@@ -71,6 +70,7 @@ const commandChoices: { [key: string]: CommandInfo } = {
   user: { execute: storeUser, description: "set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
   msg: { execute: showContactDetails, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
+
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
   //TODO: Add additional command options
 }

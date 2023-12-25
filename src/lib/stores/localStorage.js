@@ -7,8 +7,8 @@ user.subscribe((name) => {
   if (browser) window.localStorage.setItem('userID', name);
 })
 
-const historyInfo = browser && window.localStorage.getItem('history');
+const historyInfo = browser && window.sessionStorage.getItem('history');
 export const history = writable(historyInfo ? JSON.parse(historyInfo) : []);
 history.subscribe((cmd) => {
-  if (browser) window.localStorage.setItem('history', JSON.stringify(cmd));
+  if (browser) window.sessionStorage.setItem('history', JSON.stringify(cmd));
 })
