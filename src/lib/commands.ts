@@ -25,10 +25,21 @@ CD3.dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' c
 
 // TODO: Set Up Email Template for msg
 const contactDetails: HTMLResponse = {
-  element: `
-<p class=italic>
-msg is still a work in progress, it will be implemented soon :^)
-</p>
+  element: `<form method="POST">
+	<label>
+		Name
+		<input class="bg-transparent font-semibold" name="user" placeholder="John Doe">
+	</label>
+	<label>
+		Email
+		<input class="bg-transparent" name="email" type="email" placeholder="user@example.com">
+	</label>
+	<label>
+		Message Content
+		<textarea  class="bg-transparent" name="email_content" type="password" placeholder="I LOVE this site!!"></textarea>
+	</label>
+	<button class="bg-foam text-overlay p-2.5" formaction="/api/mail">Submit</button>
+</form>
 `
 }
 

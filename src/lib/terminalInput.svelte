@@ -44,12 +44,10 @@
 		} else if (event.key === 'ArrowUp') {
 			event.preventDefault();
 			historyIndex = Math.max(0, historyIndex - 1);
-			console.log(historyIndex);
 			command = $history[historyIndex];
 		} else if (event.key === 'ArrowDown') {
 			event.preventDefault();
 			historyIndex = Math.min($history.length, historyIndex + 1);
-			console.log(historyIndex);
 			command = $history[historyIndex];
 		}
 	}
