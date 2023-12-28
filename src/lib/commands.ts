@@ -29,7 +29,7 @@ const contactDetails: HTMLResponse = {
   element: `<form method="POST">
 	<label>
 		Name
-		<input class="bg-transparent font-semibold" name="user" placeholder="John Doe">
+		<input class="bg-transparent" name="user" placeholder="John Doe">
 	</label>
 	<label>
 		Email
