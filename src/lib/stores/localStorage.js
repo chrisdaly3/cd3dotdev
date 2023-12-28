@@ -12,3 +12,9 @@ export const history = writable(historyInfo ? JSON.parse(historyInfo) : []);
 history.subscribe((cmd) => {
   if (browser) window.sessionStorage.setItem('history', JSON.stringify(cmd));
 })
+
+export const userMessageCount = browser && window.sessionStorage.getItem('msgCount');
+export const messages = writable(userMessageCount || '');
+messages.subscribe((num) => {
+  if (browser) window.sessionStorage.setItem('msgCount', num)
+})

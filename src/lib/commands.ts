@@ -1,4 +1,4 @@
-import { user } from '$lib/stores/localStorage';
+import { user, messages, userMessageCount } from '$lib/stores/localStorage';
 
 interface CommandInfo {
   execute: (arg0: string) => any;
@@ -8,6 +8,8 @@ interface CommandInfo {
 export type HTMLResponse = {
   element: string;
 }
+
+let messagesSent = 0;
 
 const authorInfo: HTMLResponse = {
   element: `<p class=font-bold>
@@ -23,7 +25,6 @@ CD3.dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' c
 `
 }
 
-// TODO: Set Up Email Template for msg
 const contactDetails: HTMLResponse = {
   element: `<form method="POST">
 	<label>
@@ -72,15 +73,21 @@ function callURL(command: string) {
   }
 }
 
-function showContactDetails(): HTMLResponse {
-  return contactDetails
+function renderMsgForm(): HTMLResponse | string {
+  messagesSent += 1
+  messages.set(messagesSent.toString())
+  if (messagesSent >= 4) {
+    return `Oh no, it seems like you've reached your messaging limit. Please try again later.\n(aka - I'm on a free email API plan, please don't rack up my key usage :^)`
+  } else {
+    return contactDetails
+  }
 }
 
 const commandChoices: { [key: string]: CommandInfo } = {
   help: { execute: showHelp, description: "return a list of helpful commands" },
   user: { execute: storeUser, description: "set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
-  msg: { execute: showContactDetails, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
+  msg: { execute: renderMsgForm, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
 
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
   //TODO: Add additional command options
