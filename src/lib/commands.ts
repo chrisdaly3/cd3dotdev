@@ -88,8 +88,9 @@ const commandChoices: { [key: string]: CommandInfo } = {
   user: { execute: storeUser, description: "set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
   msg: { execute: renderMsgForm, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
-
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
+  // weather {execute: weathercommand, description: "check your local weather"},
+  // scores {execute: getScores, description: "Display scores from around your favorite leagues for today"},
   //TODO: Add additional command options
 }
 
