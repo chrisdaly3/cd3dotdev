@@ -31,14 +31,14 @@
 	};
 
 	// Set the user's prior history of commands for arrow handling, and perform action of command
-	function handleKeyPress(event: KeyboardEvent) {
+	async function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			event.preventDefault();
 			$history.push(command);
 			history.set($history);
 			historyIndex = $history.length;
 
-			let response = handle(command);
+			let response =  await handle(command);
 			terminalLines[terminalLines.length] = { command, response };
 			command = '';
 		} else if (event.key === 'ArrowUp') {

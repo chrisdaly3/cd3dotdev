@@ -44,6 +44,13 @@ const contactDetails: HTMLResponse = {
 `
 }
 
+const callers: { [key: string]: string } = {
+  '--mlb': 'example',
+  '--nba': 'example',
+  '--nfl': 'example',
+  '--nhl': 'api/sports/nhl'
+}
+
 function storeUser(command: string): string {
   if (command === '' || /^[]+$/.test(command) || command === '--help') {
     return `usage: user [options]\n\n[options]\n  - <your_name>: sets your name as the user\n  - clear: removes the set name and returns to default`
@@ -83,9 +90,20 @@ function renderMsgForm(): HTMLResponse | string {
   }
 }
 
-function getScores(option: string): HTMLResponse | string {
+//TODO: Add server function handling for nba, mlb, and nfl leagues
+async function getScores(option: string): Promise<HTMLResponse | string> {
   if (option === '' || /^[]+$/.test(option) || option === '--help') {
     return `usage: scores [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n  --mlb: return scores & standings in the MLB\n  --nfl: return scores & standings in the NFL`
+  } else if (callers[option]) {
+    try {
+      let response = await fetch(callers[option]);
+      let data = await response.json();
+      console.log(data)
+      return `Looking good! Request sent :^)`
+    } catch (error) {
+      console.error('Error fetching data', error);
+      return `Error retreiving sports data: ${error}`
+    };
   } else {
     return `working on it! you selected the ${option} league.`
   }
