@@ -15,7 +15,7 @@ const authorInfo: HTMLResponse = {
   element: `<p class=font-bold>
 -----------------------------
 Name: Chris Daly
-Years of Experience: 3.5
+Years of Experience: 2.5
 Focus: Backend and DevOps
 Languages: Golang, Python, Bash, Ruby, Javascript/Typescript 
 Frameworks: Django, Svelte/Sveltekit, Fiber, Express
@@ -83,14 +83,22 @@ function renderMsgForm(): HTMLResponse | string {
   }
 }
 
+function getScores(option: string): HTMLResponse | string {
+  if (option === '' || /^[]+$/.test(option) || option === '--help') {
+    return `usage: scores [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n  --mlb: return scores & standings in the MLB\n  --nfl: return scores & standings in the NFL`
+  } else {
+    return `working on it! you selected the ${option} league.`
+  }
+}
+
 const commandChoices: { [key: string]: CommandInfo } = {
   help: { execute: showHelp, description: "return a list of helpful commands" },
   user: { execute: storeUser, description: "set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
+  scores: { execute: getScores, description: "Display scores and standings around your favorite professional sports leagues. --help for use" },
   msg: { execute: renderMsgForm, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
-  // weather {execute: weathercommand, description: "check your local weather"},
-  // scores {execute: getScores, description: "Display scores from around your favorite leagues for today"},
+  // weather: {execute: weathercommand, description: "check your local weather"},
   //TODO: Add additional command options
 }
 
