@@ -44,10 +44,11 @@ const contactDetails: HTMLResponse = {
 `
 }
 
+
 const callers: { [key: string]: string } = {
-  '--mlb': 'example',
-  '--nba': 'example',
-  '--nfl': 'example',
+  '--mlb': 'api/sports/mlb',
+  '--nba': 'api/sports/nba',
+  '--nfl': 'api/sports/nfl',
   '--nhl': 'api/sports/nhl'
 }
 
@@ -93,13 +94,18 @@ function renderMsgForm(): HTMLResponse | string {
 //TODO: Add server function handling for nba, mlb, and nfl leagues
 async function getScores(option: string): Promise<HTMLResponse | string> {
   if (option === '' || /^[]+$/.test(option) || option === '--help') {
-    return `usage: scores [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n  --mlb: return scores & standings in the MLB\n  --nfl: return scores & standings in the NFL`
+    return `usage: sports [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n  --mlb: return scores & standings in the MLB\n  --nfl: return scores & standings in the NFL`
   } else if (callers[option]) {
     try {
       let response = await fetch(callers[option]);
       let data = await response.json();
-      console.log(data)
-      return `Looking good! Request sent :^)`
+      let allSportData: HTMLResponse = {
+        element: `<br/>
+          ${data.gamesElement.element}
+          ${data.standingsElement.element}
+        `.trim()
+      }
+      return allSportData;
     } catch (error) {
       console.error('Error fetching data', error);
       return `Error retreiving sports data: ${error}`
@@ -110,10 +116,10 @@ async function getScores(option: string): Promise<HTMLResponse | string> {
 }
 
 const commandChoices: { [key: string]: CommandInfo } = {
-  help: { execute: showHelp, description: "return a list of helpful commands" },
-  user: { execute: storeUser, description: "set the terminal user value. --help for use" },
+  help: { execute: showHelp, description: "Return a list of helpful commands" },
+  user: { execute: storeUser, description: "Set the terminal user value. --help for use" },
   curl: { execute: callURL, description: "Change to a new site. --help for use." },
-  scores: { execute: getScores, description: "Display scores and standings around your favorite professional sports leagues. --help for use" },
+  sports: { execute: getScores, description: "Show today's games and standings for your favorite leagues. --help for use" },
   msg: { execute: renderMsgForm, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
   // weather: {execute: weathercommand, description: "check your local weather"},
