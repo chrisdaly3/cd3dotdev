@@ -46,9 +46,9 @@ const contactDetails: HTMLResponse = {
 
 
 const callers: { [key: string]: string } = {
-  '--mlb': 'api/sports/mlb',
+  // '--mlb': 'api/sports/mlb',
   '--nba': 'api/sports/nba',
-  '--nfl': 'api/sports/nfl',
+  // '--nfl': 'api/sports/nfl',
   '--nhl': 'api/sports/nhl'
 }
 
@@ -91,7 +91,7 @@ function renderMsgForm(): HTMLResponse | string {
   }
 }
 
-//TODO: Add server function handling for nba, mlb, and nfl leagues
+//TODO: Add server function handling for mlb and nfl leagues
 async function getScores(option: string): Promise<HTMLResponse | string> {
   if (option === '' || /^[]+$/.test(option) || option === '--help') {
     return `usage: sports [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n  --mlb: return scores & standings in the MLB\n  --nfl: return scores & standings in the NFL`
