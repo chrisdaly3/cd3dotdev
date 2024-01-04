@@ -17,6 +17,7 @@
 	let username;
 
 	$: username = user;
+	$: loading = false;
 
 	onMount(() => {
 		terminalInput.focus();
@@ -38,9 +39,14 @@
 			history.set($history);
 			historyIndex = $history.length;
 
-			let response =  await handle(command);
-			terminalLines[terminalLines.length] = { command, response };
-			command = '';
+			try {
+				loading = true;
+				let response = await handle(command);
+				terminalLines[terminalLines.length] = { command, response };
+				command = '';
+			} finally {
+				loading = false;
+			}
 		} else if (event.key === 'ArrowUp') {
 			event.preventDefault();
 			historyIndex = Math.max(0, historyIndex - 1);
@@ -79,4 +85,7 @@
 		role="textbox"
 		tabindex="-1"
 	></span><span class="outline-none caret-transparent bg-text animate-blink bg-clip-text">🁢</span>
+	{#if loading}
+		<p class="pt-2 pb-4 font-bold">Fetching data...</p>
+	{/if}
 </div>
