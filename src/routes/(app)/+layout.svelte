@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.css';
+	import '../../app.css';
 	import { isVisible } from '$lib/stores/hide';
 	function showTerminal() {
 		isVisible.set(true);
