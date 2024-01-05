@@ -12,14 +12,26 @@ export type HTMLResponse = {
 let messagesSent = 0;
 
 const authorInfo: HTMLResponse = {
-  element: `<p class=font-bold>
+  element: `<p class=font-semibold>
 -----------------------------
-Name: Chris Daly
-Years of Experience: 2.5
-Focus: Backend and DevOps
-Languages: Golang, Python, Bash, Ruby, Javascript/Typescript 
-Frameworks: Django, Svelte/Sveltekit, Fiber, Express
-CD3.dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>https://www.github.com/chrisdaly3/cd3dotdev</a>
+Hi, my name's Chris.
+
+I'm a:
+  - Software Engineer
+  - Cat Dad
+  - Command Line Junkie
+  - Horror Enthusiast
+  - Golang Apologist
+  - And a sub-par ice hockey player.
+
+Thanks for checking things out.
+You can find my resume at: <a href='https://www.cd3.dev/author/resume' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>cd3.dev/author/resume</a>
+
+Source Code for this project:
+cd3.dev/src: <a href='https://github.com/chrisdaly3/cd3dotdev' target='_blank' class='text-gold hover:text-pine hover:cursor-pointer'>github.com/chrisdaly3/cd3dotdev</a>
+
+I'm always happy to collaborate on new things!
+Use the <i class="text-gold italic">msg</i> command to get in touch. 
 -----------------------------
 </p>
 `
