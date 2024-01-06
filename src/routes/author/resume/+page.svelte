@@ -258,7 +258,7 @@
 				</div>
 			</div>
 		</div>
-		<footer class="px-6 pb-4 flex flex-row gap-16 justify-center md:hidden">
+		<footer class="px-6 pb-4 flex flex-row gap-11 justify-center md:hidden">
 			©CD3.dev
 			<a href="https://www.linkedin.com/in/christopherdaly3" target="_blank" class="flex">
 				<div class="mr-2">
