@@ -12,7 +12,7 @@
 </script>
 
 {#if $isVisible}
-	<div class="container mx-auto w-8/12 p-4 h-3/5" transition:blur>
+	<div class="container mx-auto p-4 w-full h-5/6 md:h-3/5 md:w-8/12 " transition:blur>
 		<div class="bg-taskBar flex w-auto self-center rounded-t-xl">
 			<button
 				class="mx-1.5 ml-4 my-4 w-3 h-3 rounded-full bg-exit hover:bg-exitHover"
