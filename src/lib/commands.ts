@@ -58,14 +58,14 @@ const contactDetails: HTMLResponse = {
 
 
 const callers: { [key: string]: string } = {
-  // '--mlb': 'api/sports/mlb',
-  '--nba': 'api/sports/nba',
-  // '--nfl': 'api/sports/nfl',
-  '--nhl': 'api/sports/nhl'
+  // '-mlb': 'api/sports/mlb',
+  '-nba': 'api/sports/nba',
+  // '-nfl': 'api/sports/nfl',
+  '-nhl': 'api/sports/nhl'
 }
 
 function storeUser(command: string): string {
-  if (command === '' || /^[]+$/.test(command) || command === '--help') {
+  if (command === '' || /^[]+$/.test(command) || command === '-help') {
     return `usage: user [options]\n\n[options]\n  - <your_name>: sets your name as the user\n  - clear: removes the set name and returns to default`
   } else if (command === 'clear') {
     user.set('visitor')
@@ -86,7 +86,7 @@ function showAuthorDetails(): HTMLResponse {
 }
 
 function callURL(command: string) {
-  if (command === '' || /^[]+$/.test(command) || command === '--help') {
+  if (command === '' || /^[]+$/.test(command) || command === '-help') {
     return `usage: curl <url>\n\n<url.tld>: redirects the page to the requested url`
   } else {
     window.location.href = `https://${command}`
@@ -105,8 +105,8 @@ function renderMsgForm(): HTMLResponse | string {
 
 //TODO: Add server function handling for mlb and nfl leagues
 async function getScores(option: string): Promise<HTMLResponse | string> {
-  if (option === '' || /^[]+$/.test(option) || option === '--help') {
-    return `usage: sports [options]\n\n[options]\n  --nba: return scores & standings in the NBA\n  --nhl: return scores & standings in the NHL\n`
+  if (option === '' || /^[]+$/.test(option) || option === '-help') {
+    return `usage: sports [options]\n\n[options]\n  -nba: return scores & standings in the NBA\n  -nhl: return scores & standings in the NHL\n`
   } else if (callers[option]) {
     try {
       let response = await fetch(callers[option]);
@@ -129,9 +129,9 @@ async function getScores(option: string): Promise<HTMLResponse | string> {
 
 const commandChoices: { [key: string]: CommandInfo } = {
   help: { execute: showHelp, description: "Return a list of helpful commands" },
-  user: { execute: storeUser, description: "Set the terminal user value. --help for use" },
-  curl: { execute: callURL, description: "Change to a new site. --help for use." },
-  sports: { execute: getScores, description: "Show today's games and standings for your favorite leagues. --help for use" },
+  user: { execute: storeUser, description: "Set the terminal user value. -help for use" },
+  curl: { execute: callURL, description: "Change to a new site. -help for use." },
+  sports: { execute: getScores, description: "Show today's games and standings for your favorite leagues. -help for use" },
   msg: { execute: renderMsgForm, description: "Get in touch with the site creator (issues, job inquiries, etc.)" },
   neofetch: { execute: showAuthorDetails, description: "Find out more about the site creator" },
   // weather: {execute: weathercommand, description: "check your local weather"},
@@ -141,7 +141,7 @@ const commandChoices: { [key: string]: CommandInfo } = {
 export function handle(command: string) {
   const [c, ...args] = command.trim().split(' ')
   if (commandChoices[c]) {
-    const callFunc = commandChoices[c];
+    const callFunc = commandChoices[c.toLowerCase()];
     const response = callFunc.execute(args.join(' '))
     return response;
   }

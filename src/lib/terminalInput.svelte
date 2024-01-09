@@ -25,6 +25,12 @@
 
 	afterUpdate(() => {
 		scrollToBottom(window);
+		if (document.getElementsByClassName('gameDate')) {
+			let dates = document.getElementsByClassName('gameDate');
+			for (let i = 0; i < dates.length; i++) {
+				dates[i].innerHTML = new Date(dates[i].innerHTML).toLocaleTimeString();
+			}
+		}
 	});
 
 	const scrollToBottom = (node: HTMLElement) => {

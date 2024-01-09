@@ -15,7 +15,7 @@ async function generateGameRows(data: Array<{ date: string, home: string, away: 
         <td class="border-y border-love px-4 text-center">${row.away}</td>
         <td class="border-y border-love px-1">@</td>
         <td class="border-y border-love px-4 text-center">${row.home}</td>
-        <td class="border-y border-love px-4 text-center">${new Date(row.date).toLocaleTimeString()} UTC</td>
+        <td class="border-y border-love px-4 text-center gameDate">${new Date(row.date).toUTCString()}</td>
       </tr>
     `).join('');
 };
