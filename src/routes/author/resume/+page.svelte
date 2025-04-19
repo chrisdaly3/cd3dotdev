@@ -118,16 +118,27 @@
 				<div class="mx-4 mb-8">
 					<h1 class="mb-4 text-4xl font-bold text-slate-800">Summary</h1>
 					<p class="text-lg">
-						Software Engineer with ~3 years of hands-on experience designing, implementing, and
-						managing DevOps pipelines, bootstrapping cloud-native microservices in Python & Go, and
-						automating Cloud infrastructure through Terraform.
+						Software Engineer with 4+ years of hands-on experience in backend development and platform engineering.
+						<br/>
+						<br/>
+						<b>Professionally:</b> Go, Python, MongoDB, & Google Cloud Platform.
+						<br/>
+						<br/>
+						<b>Hobbyist:</b> Ruby, Typescript, PostgreSQL, & Go (I really like Go 🤓).
+						<br/>
+						<br/>
+						---
+						<br/>
+						<br/>
+						<i>Tl;dr</i> - I am a proactive and technically opinionated engineer, with a knack for building high-quality and maintainable codebases.
+						If that piques your interest, maybe we should talk about what I can bring to your organization.
 					</p>
 				</div>
 				<div class="mx-4">
 					<h1 class="mb-6 text-4xl font-bold text-slate-800">Experience</h1>
 					<ul>
 						<li class="mb-4">
-							<h2 class="text-2xl font-medium text-gray-800">DevOps Engineer</h2>
+							<h2 class="text-2xl font-medium text-gray-800">Backend Software Engineer</h2>
 							<div class="mt-1">
 								<div>
 									<i class="bx bx-buildings" style="color: #666"></i>
@@ -135,20 +146,20 @@
 								</div>
 								<div>
 									<i class="bx bx-calendar text-sm" style="color: #666"></i>
-									<small class="text-sm text-gray-600">Jul 2021 - Present </small>
+									<small class="text-sm text-gray-600">Mar 2024 - Present </small>
 								</div>
 							</div>
 						</li>
 						<li class="mb-4">
-							<h2 class="text-2xl font-medium text-gray-800">Full Stack Developer</h2>
+							<h2 class="text-2xl font-medium text-gray-800">Jr. DevOps Engineer / Software Release Manager</h2>
 							<div class="mt-1">
 								<div>
 									<i class="bx bx-buildings" style="color: #666"></i>
-									<small class="text-base text-gray-800">Freelance</small>
+									<small class="text-base text-gray-800"> URBN, Inc.</small>
 								</div>
 								<div>
 									<i class="bx bx-calendar text-sm" style="color: #666"></i>
-									<small class="text-sm text-gray-600">Dec 2022 - Present</small>
+									<small class="text-sm text-gray-600">Jul 2021 - Mar 2024 </small>
 								</div>
 							</div>
 						</li>
@@ -178,11 +189,11 @@
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Typescript</span
+									>Ruby</span
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Javascript</span
+									>Typescript</span
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
@@ -190,39 +201,7 @@
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Bash</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Ruby</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Django</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>NodeJS</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Tornado</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>Fiber(golang)</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
 									>Svelte</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>SvelteKit</span
-								>
-								<span
-									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>TailwindCSS</span
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
@@ -246,7 +225,7 @@
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
-									>SQL</span
+									>PostgreSQL</span
 								>
 								<span
 									class="my-1 mr-2 rounded-full border bg-gray-200 px-4 py-2 text-sm font-medium"
