@@ -118,7 +118,7 @@
 				<div class="mx-4 mb-8">
 					<h1 class="mb-4 text-4xl font-bold text-slate-800">Summary</h1>
 					<p class="text-lg">
-						Software Engineer with 4+ years of hands-on experience in backend development and platform engineering.
+						Software Engineer with 5+ years of hands-on experience in backend development and platform engineering.
 						<br/>
 						<br/>
 						<b>Professionally:</b> Go, Python, MongoDB, & Google Cloud Platform.
@@ -131,7 +131,8 @@
 						<br/>
 						<br/>
 						<i>Tl;dr</i> - I am a proactive and technically opinionated engineer, with a knack for building high-quality and maintainable codebases.
-						If that piques your interest, maybe we should talk about what I can bring to your organization.
+						If that piques your interest, maybe we should talk about what I can bring to your organization. My email is listed on the left-hand side of the page,
+						or you can reach me using the <code>msg</code> command on <a href="https://www.cd3.dev">cd3.dev</a>
 					</p>
 				</div>
 				<div class="mx-4">
