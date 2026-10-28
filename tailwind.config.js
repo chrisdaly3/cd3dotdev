@@ -31,9 +31,14 @@ export default {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0' },
 				},
+				reveal: {
+					'0%': { clipPath: 'inset(0 0 100% 0)' },
+					'100%': { clipPath: 'inset(0 0 0 0)' },
+				},
 			},
 			animation: {
-				'blink': 'blink 1.25s linear infinite'
+				'blink': 'blink 1.25s linear infinite',
+				'reveal': 'reveal 500ms ease-out 300ms backwards'
 			}
 		}
 	},
