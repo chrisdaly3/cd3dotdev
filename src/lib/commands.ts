@@ -1,4 +1,6 @@
+import { get } from 'svelte/store';
 import { user, messages, userMessageCount } from '$lib/stores/localStorage';
+import { isVisible } from '$lib/stores/hide';
 
 interface CommandInfo {
   execute: (arg0: string) => any;
@@ -107,12 +109,66 @@ const commandChoices: { [key: string]: CommandInfo } = {
   //TODO: Add additional command options
 }
 
+const skull: HTMLResponse = {
+  element: `<p class="pt-2 font-bold">PERMISSION GRANTED - SYSTEM SHUTTING DOWN</p>
+<pre class="text-xs leading-none text-love pt-2 pb-4 animate-reveal">
+                 uuuuuuu
+             uu$$$$$$$$$$$uu
+          uu$$$$$$$$$$$$$$$$$uu
+         u$$$$$$$$$$$$$$$$$$$$$u
+        u$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$$$$$$$$$$$$$$$$$$$$u
+       u$$$$$$"   "$$$"   "$$$$$$u
+       "$$$$"      u$u       $$$$"
+        $$$u       u$u       u$$$
+        $$$u      u$$$u      u$$$
+         "$$$$uu$$$   $$$uu$$$$"
+          "$$$$$$$"   "$$$$$$$"
+            u$$$$$$$u$$$$$$$u
+             u$"$"$"$"$"$"$u
+  uuu        $$u$ $ $ $ $u$$       uuu
+ u$$$$        $$$$$u$u$u$$$       u$$$$
+  $$$$$uu      "$$$$$$$$$"     uu$$$$$$
+u$$$$$$$$$$$uu    """""    uuuu$$$$$$$$$$
+$$$$"""$$$$$$$$$$uuu   uu$$$$$$$$$"""$$$"
+ """      ""$$$$$$$$$$$uu ""$"""
+           uuuu ""$$$$$$$$$$uuu
+  u$$$uuu$$$$$$$$$uu ""$$$$$$$$$$$uuu$$$
+  $$$$$$$$$$""""           ""$$$$$$$$$$$"
+   "$$$$$"                      ""$$$$""
+     $$$"                         $$$$"
+</pre>`
+}
+
+function denySudo(): string {
+  return `${get(user)} is not in the sudoers file. This incident will be reported.`
+}
+
+function runSudo(command: string): HTMLResponse | string {
+  if (command.split(' ')[0] !== 'rm') {
+    return denySudo()
+  }
+  // Give the skull a moment on screen, then close the window like the x button does
+  setTimeout(() => isVisible.set(false), 2000)
+  return skull
+}
+
+// Easter eggs, kept out of commandChoices so they don't show up in help
+const hiddenCommands: { [key: string]: (arg0: string) => any } = {
+  rm: denySudo,
+  sudo: runSudo,
+}
+
 export function handle(command: string) {
   const [c, ...args] = command.trim().split(' ')
   if (commandChoices[c]) {
     const callFunc = commandChoices[c.toLowerCase()];
     const response = callFunc.execute(args.join(' '))
     return response;
+  }
+  else if (hiddenCommands[c]) {
+    return hiddenCommands[c](args.join(' '))
   }
   else {
     return `The ${c} command does not exist`;
