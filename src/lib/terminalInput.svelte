@@ -79,7 +79,7 @@
 </span>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="text-text overflow-y-auto" on:click={terminalInput.focus()} role="textbox" tabindex="0">
+<div class="text-text overflow-y-auto" on:click={() => terminalInput.focus()} role="textbox" tabindex="0">
 	<span class="outline-none caret-transparent text-foam">{$user} @ ~/cd3/dev: </span><span
 		bind:this={terminalInput}
 		contenteditable="true"
